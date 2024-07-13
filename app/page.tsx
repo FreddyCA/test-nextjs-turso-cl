@@ -1,8 +1,6 @@
 import InputMessages from "./ui/inputMessages";
 import ListMessages from "./ui/listMessages";
 
-// export const runtime = "edge";
-
 export default function Home() {
   return (
     <div className="w-full h-screen overflow-hidden flex flex-col items-center  py-16 bg-slate-200">

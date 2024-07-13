@@ -1,5 +1,4 @@
 "use server";
-export const runtime = "edge";
 import { revalidatePath } from "next/cache";
 import { db } from "../db";
 import { messagesTable } from "../db/schema";
