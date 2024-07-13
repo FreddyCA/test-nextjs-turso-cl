@@ -5,7 +5,7 @@ import { db } from "../db";
 import { messagesTable } from "../db/schema";
 
 export async function createMessage(formData: FormData) {
-  console.log(formData);
+  // console.log(formData);
   try {
     const newMessage = formData.get("message");
     if (typeof newMessage !== "string") {
