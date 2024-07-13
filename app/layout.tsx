@@ -5,7 +5,6 @@ import { montserrat } from "./ui/fonts";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const runtime = "edge";
 
 export const metadata: Metadata = {
   title: "Test NextJS Turso Clf",
