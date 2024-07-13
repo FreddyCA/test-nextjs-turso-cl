@@ -1,3 +1,4 @@
+'use server'
 import { desc } from "drizzle-orm";
 import { db } from "../db";
 import { messagesTable } from "../db/schema";

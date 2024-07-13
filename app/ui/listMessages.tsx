@@ -1,4 +1,5 @@
 import { getMessages } from "../lib/actions/getMessagesDB";
+export const runtime = "edge";
 
 export default async function ListMessages() {
   let messages = [];
