@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   CheckIcon,
@@ -5,20 +6,19 @@ import {
   CurrencyDollarIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
-
-export type CustomerField = {
-  id: string;
-  name: string;
-};
+import { useFormState } from "react-dom";
+import { createInvoice } from "../lib/actions";
+import { CustomerField, initialState } from "../lib/definitions";
 
 export default function FormInvoice({
   customers,
 }: {
   customers: CustomerField[];
 }) {
-  
+  const [stateForm, formSubmit] = useFormState(createInvoice, initialState);
+
   return (
-    <form >
+    <form action={formSubmit}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -108,6 +108,7 @@ export default function FormInvoice({
           </div>
         </fieldset>
       </div>
+      <span>{stateForm?.message}</span>
       <div className="mt-6 flex justify-end gap-4">
         <Link
           href="/"
@@ -117,7 +118,6 @@ export default function FormInvoice({
         </Link>
         <button
           type="submit"
-          //   style={{ padding: "0.5rem 1rem", border: "2px solid blue" }}
           className="flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-yellow-100 hover:text-cyan-950"
         >
           Create Invoice
