@@ -2,7 +2,7 @@ import { db } from "@/app/lib/db";
 import { customersTable } from "@/app/lib/db/schema";
 import initialDB from "@/app/lib/placeholder-data";
 import { NextResponse } from "next/server";
-
+export const runtime = 'edge';
 export async function POST() {
   const customers = initialDB.customers;
 
