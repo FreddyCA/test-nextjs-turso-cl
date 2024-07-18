@@ -1,6 +1,5 @@
 "use server";
 
-import { error } from "console";
 import { z } from "zod";
 import { db } from "./db";
 import { invoicesTable } from "./db/schema";
@@ -39,6 +38,7 @@ export async function createInvoice(
   // Validando la respuesta de safeParse
   if (!validatedFields.success) {
     console.error("La validación falló");
+    console.error(validatedFields.error.flatten().fieldErrors);
     return {
       errors: validatedFields.error.flatten().fieldErrors,
     };
@@ -66,9 +66,11 @@ export async function createInvoice(
       })
       .execute();
     revalidatePath("/");
-    return { message: "Se agregó la factura" };
   } catch (error) {
     console.error("Error de base de datos:", error);
     return { message: "No se creó la factura" };
   }
+  //   prevState.message = "culminado"
+  redirect("/");
+  //   return { message: "Se agregó la factura" };
 }

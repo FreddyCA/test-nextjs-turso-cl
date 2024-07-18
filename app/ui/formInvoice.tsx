@@ -16,7 +16,6 @@ export default function FormInvoice({
   customers: CustomerField[];
 }) {
   const [stateForm, formSubmit] = useFormState(createInvoice, initialState);
-
   return (
     <form action={formSubmit}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
