@@ -6,28 +6,17 @@ export const messagesTable = sqliteTable("messages", {
   message: text("message").notNull(),
 });
 
-// export const usersTable = sqliteTable('users', {
-//   id: integer('id').primaryKey(),
-//   name: text('name').notNull(),
-//   age: integer('age').notNull(),
-//   email: text('email').unique().notNull(),
-// });
+export const invoicesTable = sqliteTable("invoices", {
+  id: text("id").primaryKey(),
+  customer_id: text("customer_id").notNull(),
+  amount: integer("amount").notNull(),
+  status: text("status").notNull(),
+  date: text("date").notNull(),
+});
 
-// export const postsTable = sqliteTable('posts', {
-//   id: integer('id').primaryKey(),
-//   title: text('title').notNull(),
-//   content: text('content').notNull(),
-//   userId: integer('user_id')
-//     .notNull()
-//     .references(() => usersTable.id, { onDelete: 'cascade' }),
-//   createdAt: text('created_at')
-//     .default(sql`(CURRENT_TIMESTAMP)`)
-//     .notNull(),
-//   updateAt: integer('updated_at', { mode: 'timestamp' }).$onUpdate(() => new Date()),
-// });
-
-// export type InsertUser = typeof usersTable.$inferInsert;
-// export type SelectUser = typeof usersTable.$inferSelect;
-
-// export type InsertPost = typeof postsTable.$inferInsert;
-// export type SelectPost = typeof postsTable.$inferSelect;
+export const customersTable = sqliteTable("customers", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").unique().notNull(),
+  image_url: text("image_url").notNull(),
+});
