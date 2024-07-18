@@ -3,16 +3,6 @@ export type CustomerField = {
   name: string;
 };
 
-// Estado inicial para errores o mensajes de éxito
-// export const initialState = {
-//   message: "",
-//   errors: {
-//     customerId: "",
-//     amount: "",
-//     status: "",
-//   },
-// };
-
 export type CreateInvoiceState = {
   errors?: {
     customerId?: string[];

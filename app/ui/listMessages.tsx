@@ -6,7 +6,6 @@ export default async function ListMessages() {
   try {
     messages = await getMessages();
   } catch (error) {
-    console.error("Error fetching messages:", error);
     return (
       <div className="mt-8 text-red-600">
         Error al cargar los mensajes. Inténtalo de nuevo más tarde.

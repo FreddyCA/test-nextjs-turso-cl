@@ -27,7 +27,7 @@ const CreateInvoice = FormSchema.omit({ id: true, date: true });
 export async function createInvoice(
   prevState: CreateInvoiceState,
   formData: FormData
-) {
+): Promise<CreateInvoiceState> {
   // Validado por zod
   const validatedFields = CreateInvoice.safeParse({
     customerId: formData.get("customerId"),
@@ -37,15 +37,11 @@ export async function createInvoice(
 
   // Validando la respuesta de safeParse
   if (!validatedFields.success) {
-    console.error("La validación falló");
-    console.error(validatedFields.error.flatten().fieldErrors);
     return {
+      message: null,
       errors: validatedFields.error.flatten().fieldErrors,
     };
-  } 
-
-  console.log("Usuario válido", validatedFields.data);
-  console.log("Continúa");
+  }
 
   // Preparando data para inserción
   const { customerId, amount, status } = validatedFields.data;
@@ -65,12 +61,10 @@ export async function createInvoice(
         date,
       })
       .execute();
+    //   revalidando las facturas
     revalidatePath("/");
+    redirect("/");
   } catch (error) {
-    console.error("Error de base de datos:", error);
-    return { message: "No se creó la factura" };
+    return { message: "No se creó la factura", errors: {} };
   }
-  //   prevState.message = "culminado"
-  redirect("/");
-  //   return { message: "Se agregó la factura" };
 }
