@@ -42,7 +42,7 @@ export async function createInvoice(
     return {
       errors: validatedFields.error.flatten().fieldErrors,
     };
-  }
+  } 
 
   console.log("Usuario válido", validatedFields.data);
   console.log("Continúa");

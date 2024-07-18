@@ -4,9 +4,14 @@ export type CustomerField = {
 };
 
 // Estado inicial para errores o mensajes de éxito
-export const initialState = {
-  message: "",
-};
+// export const initialState = {
+//   message: "",
+//   errors: {
+//     customerId: "",
+//     amount: "",
+//     status: "",
+//   },
+// };
 
 export type CreateInvoiceState = {
   errors?: {
@@ -16,3 +21,12 @@ export type CreateInvoiceState = {
   };
   message?: string | null;
 };
+
+export const initialState: CreateInvoiceState = {
+    errors: {
+      customerId: [],
+      amount: [],
+      status: [],
+    },
+    message: "",
+  };

@@ -15,7 +15,7 @@ export default function FormInvoice({
 }: {
   customers: CustomerField[];
 }) {
-  const [stateForm, formSubmit] = useFormState(createInvoice, initialState);
+  const [stateForm, formSubmit] = useFormState(createInvoice, initialState);    
   return (
     <form action={formSubmit}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
@@ -43,6 +43,14 @@ export default function FormInvoice({
             </select>
             <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
+          <div id="customer-error" aria-live="polite" aria-atomic="true">
+            {stateForm.errors?.customerId &&
+              stateForm.errors.customerId.map((error: string) => (
+                <p className="mt-2 text-sm text-red-500" key={error}>
+                  {error}
+                </p>
+              ))}
+          </div>
         </div>
 
         {/* Invoice Amount */}
@@ -63,6 +71,14 @@ export default function FormInvoice({
               />
               <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
+          </div>
+          <div id="amount-error" aria-live="polite" aria-atomic="true">
+            {stateForm.errors?.amount &&
+              stateForm.errors.amount.map((error: string) => (
+                <p className="mt-2 text-sm text-red-500" key={error}>
+                  {error}
+                </p>
+              ))}
           </div>
         </div>
 
@@ -105,9 +121,23 @@ export default function FormInvoice({
               </div>
             </div>
           </div>
+          <div id="status-error" aria-live="polite" aria-atomic="true">
+            {stateForm.errors?.status &&
+              stateForm.errors.status.map((error: string) => (
+                <p className="mt-2 text-sm text-red-500" key={error}>
+                  {error}
+                </p>
+              ))}
+          </div>
         </fieldset>
+
+        <div aria-live="polite" aria-atomic="true">
+          {stateForm.message ? (
+            <p className="mt-2 text-sm text-red-500">{stateForm.message}</p>
+          ) : null}
+        </div>
       </div>
-      <span>{stateForm?.message}</span>
+
       <div className="mt-6 flex justify-end gap-4">
         <Link
           href="/"
