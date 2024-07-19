@@ -61,10 +61,9 @@ export async function createInvoice(
         date,
       })
       .execute();
-    //   revalidando las facturas
     revalidatePath("/");
-    redirect("/");
   } catch (error) {
     return { message: "No se creó la factura", errors: {} };
   }
+  redirect("/");
 }
